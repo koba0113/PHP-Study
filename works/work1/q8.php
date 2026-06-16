@@ -6,4 +6,11 @@
 $score = 75;
 
 // TODO: ここにコードを追記
-echo $score;
+echo $score . "\n";
+if ($score >= 80) {
+    echo "優秀です";
+} elseif ($score >= 60) {
+    echo "合格です";
+} else {
+    echo "不合格です";
+}
