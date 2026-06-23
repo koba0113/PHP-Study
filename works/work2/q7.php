@@ -9,3 +9,15 @@
 // 出力例 「johnの評価は良です」
 
 $scores = array("John" => 85, "Jane" => 92, "Jim" => 78);
+foreach ($scores as $name => $score) {
+    // 得点に応じて評価を判定
+    $grade = match (true) {
+        $score >= 90 => "優",
+        $score >= 80 => "良",
+        $score >= 70 => "可",
+        default      => "不可",
+    };
+
+    // 結果を出力
+    echo "{$name}の評価は{$grade}です。" . PHP_EOL;
+}
