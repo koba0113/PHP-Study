@@ -9,6 +9,8 @@ class Gun
     private $maxMagazine;
     // 残弾
     private $currentMagazine;
+
+    private $extendedAmount = 0;
     // ↑フィールド============================
 
     // コンストラクタ
@@ -31,7 +33,7 @@ class Gun
     }
 
     // リロード
-    function reload(): void
+    function reload($amount): void
     {
         // 問題2
         if ($this->currentMagazine === $this->maxMagazine) {
@@ -62,14 +64,31 @@ class Gun
     }
 
     // 拡張マガジンを装着
-    function setExtendedMagazine()
+    function setExtendedMagazine($amount)
     {
         // 問題4
+        if (!is_int($amount) || $amount <= 0) {
+            echo "引数が不正です\n";
+            return;
+        }
+
+        $this->extendedAmount = $amount;
     }
 
     // 拡張マガジンを取外し
     function unsetExtendedMagazine()
     {
         // 問題4
+        $this->extendedAmount = 0;
+        if ($this->extendedAmount === 0) {
+            echo "拡張マガジンは装着されていません\n";
+            return;
+        }
+
+        $this->extendedAmount = 0;
+
+        if ($this->currentMagazine > $this->maxMagazine) {
+            $this->reload($this->maxMagazine);
+        }
     }
 }
